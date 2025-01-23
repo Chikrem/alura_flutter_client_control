@@ -1,5 +1,4 @@
-import 'package:control/models/client.dart';
-import 'package:control/models/client_type.dart';
+
 import 'package:control/models/clients.dart';
 import 'package:control/pages/client_types_page.dart';
 import 'package:flutter/material.dart';
