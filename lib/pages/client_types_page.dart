@@ -5,7 +5,7 @@ import '../components/hamburger_menu.dart';
 import '../components/icon_picker.dart';
 
 class ClientTypesPage extends StatefulWidget {
-  const ClientTypesPage({Key? key, required this.title}) : super(key: key);
+  const ClientTypesPage({super.key, required this.title});
   final String title;
 
   @override

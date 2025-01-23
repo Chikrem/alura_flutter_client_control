@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import '../components/hamburger_menu.dart';
 
 class ClientsPage extends StatefulWidget {
-  const ClientsPage({Key? key, required this.title}) : super(key: key);
+  const ClientsPage({super.key, required this.title});
   final String title;
 
   @override
@@ -45,7 +45,7 @@ class _ClientsPageState extends State<ClientsPage> {
             background: Container(color: Colors.red),
             child: ListTile(
               leading: Icon(clients[index].type.icon),
-              title: Text(clients[index].name + ' ('+ clients[index].type.name + ')'),
+              title: Text('${clients[index].name} (${clients[index].type.name})'),
               iconColor: Colors.indigo,
             ),
             onDismissed: (direction) {

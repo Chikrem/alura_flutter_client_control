@@ -1,13 +1,18 @@
+import 'package:control/models/clients.dart';
 import 'package:control/pages/client_types_page.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'pages/clients_page.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(ChangeNotifierProvider(
+    create: (context) => Clients(clients: []),
+    child: const MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
