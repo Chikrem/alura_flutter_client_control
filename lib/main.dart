@@ -1,4 +1,4 @@
-import 'package:client_control/pages/client_types_page.dart';
+import 'package:control/pages/client_types_page.dart';
 import 'package:flutter/material.dart';
 import 'pages/clients_page.dart';
 

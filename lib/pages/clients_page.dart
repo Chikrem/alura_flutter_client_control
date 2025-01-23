@@ -1,5 +1,6 @@
-import 'package:client_control/models/client_type.dart';
-import 'package:client_control/models/client.dart';
+
+import 'package:control/models/client.dart';
+import 'package:control/models/client_type.dart';
 import 'package:flutter/material.dart';
 
 import '../components/hamburger_menu.dart';

@@ -1,4 +1,4 @@
-import 'package:client_control/models/client_type.dart';
+import 'package:control/models/client_type.dart';
 
 class Client {
   String name;
