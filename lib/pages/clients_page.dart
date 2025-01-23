@@ -1,7 +1,8 @@
-
 import 'package:control/models/client.dart';
 import 'package:control/models/client_type.dart';
+import 'package:control/models/clients.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../components/hamburger_menu.dart';
 
@@ -15,12 +16,22 @@ class ClientsPage extends StatefulWidget {
 
 class _ClientsPageState extends State<ClientsPage> {
 
-  List<Client> clients = [
-    Client(name: 'Geraldo', email: 'leo@email.com', type: ClientType(name: 'Platinum', icon: Icons.credit_card)),
-    Client(name: 'Paulo', email: 'leo@email.com', type: ClientType(name: 'Golden', icon: Icons.card_membership)),
-    Client(name: 'Caio', email: 'leo@email.com', type: ClientType(name: 'Titanium', icon: Icons.credit_score)),
-    Client(name: 'Ruan', email: 'ruan@email.com', type: ClientType(name: 'Diamond', icon: Icons.diamond)),
-  ];
+  // List<Client> clients = [
+  //   Client(name: 'Geraldo', email: 'leo@email.com', type: ClientType(name: 'Platinum', icon: Icons.credit_card)),
+  //   Client(name: 'Paulo', email: 'leo@email.com', type: ClientType(name: 'Golden', icon: Icons.card_membership)),
+  //   Client(name: 'Caio', email: 'leo@email.com', type: ClientType(name: 'Titanium', icon: Icons.credit_score)),
+  //   Client(name: 'Ruan', email: 'ruan@email.com', type: ClientType(name: 'Diamond', icon: Icons.diamond)),
+  // ];
+
+  // Carregar dados de clients.dart que é o provider de dados
+  // List<Client> clients = [];
+
+  // @override
+
+  // void initState() {
+  //   super.initState();
+  //   clients = context.read<Clients>().clients;
+  // }
 
   List<ClientType> types = [
     ClientType(name: 'Platinum', icon: Icons.credit_card),
@@ -37,25 +48,26 @@ class _ClientsPageState extends State<ClientsPage> {
         title: Text(widget.title),
       ),
       drawer: const HamburgerMenu(),
-      body: ListView.builder(
-        itemCount: clients.length,
-        itemBuilder: (context, index) {
-          return Dismissible(
-            key: UniqueKey(),
-            background: Container(color: Colors.red),
-            child: ListTile(
-              leading: Icon(clients[index].type.icon),
-              title: Text('${clients[index].name} (${clients[index].type.name})'),
-              iconColor: Colors.indigo,
-            ),
-            onDismissed: (direction) {
-              setState(() {
-                clients.removeAt(index);
-              });
-            },
-          );
-        },
-      ),
+      body: Consumer<Clients>(builder: (BuildContext context, Clients list, Widget? child) {
+        return ListView.builder(
+          itemCount: list.clients.length,
+          itemBuilder: (BuildContext context, int index) {
+            return ListTile(
+              leading: Icon(list.clients[index].type.icon),
+              title: Text('${list.clients[index].name}(${list.clients[index].type.name} )'),
+              trailing: IconButton(
+                icon: const Icon(Icons.delete),
+                onPressed: () {
+                  setState(() {
+                    list.clients.removeAt(index);
+                  });
+                },
+              ),
+            );
+          },
+        );
+      }),
+
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.indigo,
         onPressed: (){createType(context);},
@@ -126,15 +138,16 @@ class _ClientsPageState extends State<ClientsPage> {
                   ),
                 ),
                 actions: [
-                  TextButton(
+                  Consumer(builder: (BuildContext context, Clients list, Widget? child) {
+                    return TextButton(
                       child: const Text("Salvar"),
-                      onPressed: () async {
-                        setState(() {
-                          clients.add(Client(name: nomeInput.text, email: emailInput.text, type: dropdownValue));
-                        });
+                      onPressed: () {
+                        list.clients.add(Client(name: nomeInput.text, email: emailInput.text, type: dropdownValue));
                         Navigator.pop(context);
-                      }
-                  ),
+                      },
+                    );
+                  }),
+ 
                   TextButton(
                     child: const Text("Calcelar"),
                     onPressed: () {
