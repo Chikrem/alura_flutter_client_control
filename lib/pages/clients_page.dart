@@ -44,7 +44,7 @@ class _ClientsPageState extends State<ClientsPage> {
                 icon: const Icon(Icons.delete),
                 onPressed: () {
                   setState(() {
-                    list.clients.removeAt(index);
+                    list.remove(index);
                   });
                 },
               ),
