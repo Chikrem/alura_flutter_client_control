@@ -1,7 +1,10 @@
+import 'package:control/models/clients.dart';
+import 'package:control/models/types.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
 import 'package:control/main.dart' as app;
+import 'package:provider/provider.dart';
 
 // Tela inicial (tela de clientes)
 // Verificar se o drawer está completo
@@ -15,7 +18,8 @@ void main (){
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
   testWidgets('Integration Test', (tester) async {
-    app.main();
+    final providerKey = GlobalKey();
+    app.main(list: [], providerKey: providerKey);
     await tester.pumpAndSettle();
 
     // Teste Drawer tela inicial
@@ -60,6 +64,9 @@ void main (){
     expect(find.text('Silver'), findsOneWidget);
     expect(find.byIcon(Icons.card_giftcard), findsOneWidget);
 
+    expect(Provider.of<Types>(providerKey.currentContext!, listen: false).types.last.name, 'Silver'); // Verifica se o tipo foi adicionado
+    expect(Provider.of<Types>(providerKey.currentContext!, listen: false).types.last.icon, Icons.card_giftcard); // Verifica se o tipo foi adicionado
+
     // Teste cadastrar novo cliente
     await tester.tap(find.byIcon(Icons.menu));
     await tester.pumpAndSettle();
@@ -81,6 +88,12 @@ void main (){
 
     await tester.tap(find.text('Salvar'));
     await tester.pumpAndSettle();
+
+    expect(find.text('Teste (Silver)'), findsOneWidget);
+    expect(find.byIcon(Icons.card_giftcard), findsOneWidget);
+
+    expect(Provider.of<Clients>(providerKey.currentContext!, listen: false).clients.last.name, 'Teste'); // Verifica se o cliente foi adicionado
+    expect(Provider.of<Clients>(providerKey.currentContext!, listen: false).clients.last.email, 'Teste@teste'); // Verifica se o cliente foi adicionado
 
   });
 
