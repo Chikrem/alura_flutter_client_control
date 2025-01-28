@@ -50,6 +50,7 @@ void main (){
     await tester.enterText(find.byType(TextFormField), 'Silver');
     await tester.tap(find.text('Selecionar icone'));
     await tester.pumpAndSettle();
+
     await tester.tap(find.byIcon(Icons.card_giftcard));
     await tester.pumpAndSettle();
 
@@ -58,6 +59,30 @@ void main (){
 
     expect(find.text('Silver'), findsOneWidget);
     expect(find.byIcon(Icons.card_giftcard), findsOneWidget);
+
+    // Teste cadastrar novo cliente
+    await tester.tap(find.byIcon(Icons.menu));
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.text('Gerenciar clientes'));
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.byType(FloatingActionButton));
+    await tester.pumpAndSettle();
+
+    expect(find.byType(AlertDialog), findsOneWidget);
+    // await tester.enterText(find.byType(TextFormField), 'Teste');
+    // await tester.enterText(find.byType(TextFormField), 'Teste@teste');
+    await tester.enterText(find.byType(TextFormField).first, 'Teste');
+    await tester.enterText(find.byType(TextFormField).last, 'Teste@teste');
+    await tester.tap(find.byIcon(Icons.arrow_downward));
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.text('Silver'));
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.text('Salvar'));
+    await tester.pumpAndSettle();
 
   });
 
