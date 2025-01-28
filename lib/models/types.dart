@@ -1,5 +1,5 @@
-import 'package:control/models/client_type.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_client_control_tests/models/client_type.dart';
 
 class Types extends ChangeNotifier {
   List<ClientType> types;
@@ -17,5 +17,4 @@ class Types extends ChangeNotifier {
     types.removeAt(index);
     notifyListeners();
   }
-
 }
