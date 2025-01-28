@@ -1,5 +1,6 @@
 
-import 'package:flutter_client_control_tests/models/client_type.dart';
+
+import 'package:control/models/client_type.dart';
 
 class Client {
   String name;

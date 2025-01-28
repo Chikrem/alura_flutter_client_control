@@ -1,5 +1,5 @@
+import 'package:control/models/client_type.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_client_control_tests/models/client_type.dart';
 import 'package:provider/provider.dart';
 
 import '../components/hamburger_menu.dart';
@@ -7,7 +7,7 @@ import '../components/icon_picker.dart';
 import '../models/types.dart';
 
 class ClientTypesPage extends StatefulWidget {
-  const ClientTypesPage({Key? key, required this.title}) : super(key: key);
+  const ClientTypesPage({super.key, required this.title});
   final String title;
 
   @override

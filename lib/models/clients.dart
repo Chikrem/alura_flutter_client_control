@@ -1,5 +1,5 @@
+import 'package:control/models/client.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_client_control_tests/models/client.dart';
 
 class Clients extends ChangeNotifier {
   List<Client> clients;

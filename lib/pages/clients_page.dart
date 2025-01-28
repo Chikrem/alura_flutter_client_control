@@ -1,15 +1,16 @@
 
+import 'package:control/models/client.dart';
+import 'package:control/models/client_type.dart';
+import 'package:control/models/clients.dart';
+import 'package:control/models/types.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_client_control_tests/models/client.dart';
-import 'package:flutter_client_control_tests/models/client_type.dart';
-import 'package:flutter_client_control_tests/models/clients.dart';
-import 'package:flutter_client_control_tests/models/types.dart';
+
 import 'package:provider/provider.dart';
 
 import '../components/hamburger_menu.dart';
 
 class ClientsPage extends StatefulWidget {
-  const ClientsPage({Key? key, required this.title}) : super(key: key);
+  const ClientsPage({super.key, required this.title});
   final String title;
 
   @override
@@ -36,7 +37,7 @@ class _ClientsPageState extends State<ClientsPage> {
                 background: Container(color: Colors.red),
                 child: ListTile(
                   leading: Icon(list.clients[index].type.icon),
-                  title: Text(list.clients[index].name + ' ('+ list.clients[index].type.name + ')'),
+                  title: Text('${list.clients[index].name} (${list.clients[index].type.name})'),
                   iconColor: Colors.indigo,
                 ),
                 onDismissed: (direction) {
